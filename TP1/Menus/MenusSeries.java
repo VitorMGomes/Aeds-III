@@ -1,4 +1,4 @@
-package menus;
+package Menus;
 public class MenusSeries {
     
 }

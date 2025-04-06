@@ -1,3 +1,4 @@
+package Hash;
 /*
 TABELA HASH EXTENSÍVEL
 
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.lang.reflect.Constructor;
+
+import Registro.*;
 
 public class HashExtensivel<T extends RegistroHashExtensivel<T>> {
 

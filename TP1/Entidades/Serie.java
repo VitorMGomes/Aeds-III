@@ -1,15 +1,17 @@
-package entidades;
+package Entidades;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 
-public class Serie {
+import Registro.*;
+
+public class Serie implements EntidadeRegistro {
     
-    protected int IdSerie;
+    protected int Id;
     protected String Nome;
     protected LocalDate AnoLancamento;
     protected String Sinopse;
@@ -19,7 +21,7 @@ public class Serie {
     //construtor FULL
     public Serie(int i, String n, LocalDate a, String si, String st)
     {
-        IdSerie = i;
+        Id = i;
         Nome = n;
         AnoLancamento = a;
         Sinopse = si;
@@ -29,7 +31,7 @@ public class Serie {
     //construtor Vazio
     public Serie()
     {
-        IdSerie = -1;
+        Id = -1;
         Nome = "";
         AnoLancamento = LocalDate.now();
         Sinopse = "";
@@ -39,7 +41,7 @@ public class Serie {
     //construtor missing ID
     public Serie(String n, LocalDate a, String si, String st)
     {
-        IdSerie = -1;
+        Id = -1;
         Nome = n;
         AnoLancamento = a;
         Sinopse = si;
@@ -47,9 +49,49 @@ public class Serie {
 
     }
 
+    public int getID() {
+        return Id;
+    }
+
+    public void setID(int id) {
+        Id = id;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+
+    public LocalDate getAnoLancamento() {
+        return AnoLancamento;
+    }
+
+    public void setAnoLancamento(LocalDate anoLancamento) {
+        AnoLancamento = anoLancamento;
+    }
+
+    public String getSinopse() {
+        return Sinopse;
+    }
+
+    public void setSinopse(String sinopse) {
+        Sinopse = sinopse;
+    }
+
+    public String getStreaming() {
+        return Streaming;
+    }
+
+    public void setStreaming(String streaming) {
+        Streaming = streaming;
+    }
+
     public String toString()
     {
-        return  "\nID: " + IdSerie +
+        return  "\nID: " + Id +
                 "\nNome: " + Nome +
                 "\nAno de Lançamento: " + AnoLancamento +
                 "\nSinopse: " + Sinopse +
@@ -57,12 +99,12 @@ public class Serie {
 
     }
 
-    public byte[] toByteArray() throws Exception{
+    public byte[] toByteArray() throws IOException { 
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         DataOutputStream dos = new DataOutputStream(baos);
         
-        dos.writeInt(IdSerie);
+        dos.writeInt(Id);
         dos.writeUTF(Nome);
         dos.writeInt( (int) this.AnoLancamento.toEpochDay());
         dos.writeUTF(Sinopse);
@@ -71,12 +113,12 @@ public class Serie {
         return baos.toByteArray();
     }
 
-    public void fromByteArray(byte[] ba) throws Exception{
+    public void fromByteArray(byte[] ba) throws IOException{
 
         ByteArrayInputStream bais = new ByteArrayInputStream(ba);
         DataInputStream dis = new DataInputStream(bais);
 
-        IdSerie = dis.readInt();
+        Id = dis.readInt();
         Nome = dis.readUTF();
         AnoLancamento = LocalDate.ofEpochDay(dis.readInt());
         Sinopse = dis.readUTF();

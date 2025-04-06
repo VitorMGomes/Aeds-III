@@ -1,14 +1,17 @@
-package entidades;
+package Entidades;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 
-public class Episodio{
+import Registro.*;
 
-    protected int IDEpisodio;
+public class Episodio implements EntidadeRegistro{
+
+    protected int ID;
     protected int IDserie;
     protected String Nome;
     protected int Temporada;
@@ -20,7 +23,7 @@ public class Episodio{
     //construtor FULL
     public Episodio(int i, int is, String n, int t, LocalDate dl, int d)
     {
-        IDEpisodio = i;
+        ID = i;
         IDserie = is;
         Nome = n;
         Temporada = t;
@@ -31,7 +34,7 @@ public class Episodio{
     //construtor Vazio
     public Episodio()
     {
-        IDEpisodio = -1;
+        ID = -1;
         IDserie = -1;
         Nome = "";
         Temporada = -1;
@@ -42,7 +45,7 @@ public class Episodio{
     //construtor missing ID
     public Episodio(int is, String n, int t, LocalDate dl, int d)
     {
-        IDEpisodio = -1;
+        ID = -1;
         IDserie = is;
         Nome = n;
         Temporada = t;
@@ -50,9 +53,60 @@ public class Episodio{
         Duracao = d;
     }
 
+    
+
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int iD) {
+        ID = iD;
+    }
+
+    public int getIDserie() {
+        return IDserie;
+    }
+
+    public void setIDserie(int iDserie) {
+        IDserie = iDserie;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+
+    public int getTemporada() {
+        return Temporada;
+    }
+
+    public void setTemporada(int temporada) {
+        Temporada = temporada;
+    }
+
+    public LocalDate getDataLancamento() {
+        return DataLancamento;
+    }
+
+    public void setDataLancamento(LocalDate dataLancamento) {
+        DataLancamento = dataLancamento;
+    }
+
+    public int getDuracao() {
+        return Duracao;
+    }
+
+    public void setDuracao(int duracao) {
+        Duracao = duracao;
+    }
+
     public String toString()
     {
-        return  "\nID: " + IDEpisodio +
+        return  "\nID: " + ID +
                 "\nNome do Episodio: " + Nome +
                 "\nTemporada: " + Temporada +
                 "\nData de lançamento: " + DataLancamento +
@@ -61,12 +115,12 @@ public class Episodio{
     }
 
 
-    public byte[] toByteArray() throws Exception{
+    public byte[] toByteArray() throws IOException{
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         DataOutputStream dos = new DataOutputStream(baos);
         
-        dos.writeInt(IDEpisodio);
+        dos.writeInt(ID);
         dos.writeInt(IDserie);
         dos.writeUTF(Nome);
         dos.writeInt(Temporada);
@@ -77,12 +131,12 @@ public class Episodio{
         return baos.toByteArray();
     }
 
-    public void fromByteArray(byte[] ba) throws Exception{
+    public void fromByteArray(byte[] ba) throws IOException{
 
         ByteArrayInputStream bais = new ByteArrayInputStream(ba);
         DataInputStream dis = new DataInputStream(bais);
 
-        IDEpisodio = dis.readInt();
+        ID = dis.readInt();
         IDserie = dis.readInt();
         Nome = dis.readUTF();
         Temporada = dis.readInt();
