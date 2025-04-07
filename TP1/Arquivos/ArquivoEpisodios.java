@@ -8,6 +8,3 @@ import java.io.*;
 import java.util.*;
 
 
-public class ArquivoEpisodios extends EntidadeRegistro<Serie>{
-    
-}

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 import Registro.*;
 
-public class Serie implements EntidadeRegistro {
+public class Serie implements Registro {
     
     protected int Id;
     protected String Nome;

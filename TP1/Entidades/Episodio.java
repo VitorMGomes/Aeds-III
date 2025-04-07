@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 import Registro.*;
 
-public class Episodio implements EntidadeRegistro{
+public class Episodio implements Registro{
 
     protected int ID;
     protected int IDserie;
@@ -56,11 +56,11 @@ public class Episodio implements EntidadeRegistro{
     
 
 
-    public int getID() {
+    public int getId() {
         return ID;
     }
 
-    public void setID(int iD) {
+    public void setId(int iD) {
         ID = iD;
     }
 
@@ -126,7 +126,6 @@ public class Episodio implements EntidadeRegistro{
         dos.writeInt(Temporada);
         dos.writeInt((int) DataLancamento.toEpochDay());
         dos.writeInt(Duracao);
-        
 
         return baos.toByteArray();
     }
