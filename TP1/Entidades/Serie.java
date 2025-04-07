@@ -49,11 +49,11 @@ public class Serie implements Registro {
 
     }
 
-    public int getID() {
+    public int getId() {
         return Id;
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         Id = id;
     }
 
