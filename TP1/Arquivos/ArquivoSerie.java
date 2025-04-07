@@ -1,9 +1,8 @@
 package Arquivos;
 
-import Registro.*;
-import Entidades.Serie;
 import Arvore.*;
-
+import Entidades.Serie;
+import Registro.*;
 import java.io.*;
 import java.util.*;
 
@@ -16,14 +15,14 @@ public class ArquivoSerie extends Arquivo<Serie> {
 
         super("series", Serie.class.getConstructor());
 
-        File directory = new File("./dados/serie.db");
+        File directory = new File("./dados/");
 
         if (!directory.exists()) {
             directory.mkdirs();
         }
 
         indiceIndireto = new ArvoreBMais<>(
-                ParNomeId.class.getConstructor(), 5, "./dados/serie.db" + "/indiceIndireto.db");
+                ParNomeId.class.getConstructor(), 5, "./dados/serie.db" + File.separator + "/indiceIndireto.db");
 
     }
 
