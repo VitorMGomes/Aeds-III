@@ -110,6 +110,10 @@ public class ParNomeId implements RegistroArvoreBMais<ParNomeId> {
       return str1.compareTo(str2);
   }
 
+  public static int hash(String nome) {
+    return Math.abs(nome.hashCode());
+  }
+
   public String toString() {
     return this.nome + ";" + String.format("%-3d", this.id);
   }
